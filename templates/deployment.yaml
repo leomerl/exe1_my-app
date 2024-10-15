@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hello.name" . }}
+  labels:
+    {{ include "hello.labels" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "hello.name" . }}
+    template:
+      metadata:
+        labels:
+          app: {{ include "hello.name" . }}
+        annotations:
+          {{- toYaml .Values.annotations | nindent 8 }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      spec:
+        containers:
+          - name: {{ .Chart.Name }}
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullpolicy }}
+            ports:
+              - containerPort: 8080
+            env:
+              {{- range .Values.env }}
+              - name: "{{ .name }}"
+                value: "{{ .value }}"
+              {{- end }}

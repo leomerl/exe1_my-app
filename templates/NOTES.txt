@@ -1,0 +1,9 @@
+1. The application {{ .Chart.Name }} has been deployed.
+2. Check the pod status by running:
+
+  kubectl get pods -l "app.kubernetes.io/name={{ .Chart.Name }}"
+
+3. To access the application, run:
+
+  kubectl port-forward svc/{{ .Release.Name }}-fork-exec-hello {{ .Values.service.port }}:8080
+
