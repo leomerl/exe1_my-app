@@ -1,7 +1,7 @@
 FROM gcc:latest AS builder
 WORKDIR /app
-COPY hello.c .
-RUN gcc -o hello hello.c
+COPY run_hello.c .
+RUN gcc -o hello run_hello.c
 
 FROM alpine:latest
 WORKDIR /app

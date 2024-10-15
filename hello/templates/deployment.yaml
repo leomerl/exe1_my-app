@@ -23,6 +23,11 @@ spec:
             imagePullPolicy: {{ .Values.image.pullpolicy }}
             ports:
               - containerPort: 8080
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 2000
+            allowPrivilegeEscalation: false
             env:
               {{- range .Values.env }}
               - name: "{{ .name }}"

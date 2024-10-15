@@ -1,6 +1,6 @@
 image:
   repository: hello
-  tag: latest
+  tag: {{ .Chart.AppVersion }}
   pullPolicy: Never
 
 replicaCount: 1
@@ -8,6 +8,7 @@ replicaCount: 1
 service:
   type: NodePort
   port: 8080
+  nodePort: 30001
 
 resources:
   requests:
