@@ -1,11 +1,9 @@
-FROM gcc:latest
-
+FROM gcc:latest AS builder
 WORKDIR /app
-
-COPY . .
-
+COPY hello.c .
 RUN gcc -o hello hello.c
 
-ENTRYPOINT ./hello
-
-
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/hello .
+CMD ["./hello"]
