@@ -1,14 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "hello.name" . }}
+  name: {{ include "server_hello.name" . }}
   labels:
-    {{ include "hello.labels" . }}
+    app: {{ include "server_hello.name" . }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
       targetPort: 8080
+      nodePort: {{ .Values.service.nodePort }}
       protocol: TCP
   selector:
-    app: {{ include "hello.name" . }}
+    app: {{ include "server_hello.name" . }}
