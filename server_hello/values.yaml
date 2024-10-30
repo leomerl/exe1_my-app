@@ -1,7 +1,7 @@
 image:
   repository: server_hello
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Never
 
 replicaCount: 1
 

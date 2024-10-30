@@ -1,5 +1,5 @@
 apiVersion: v2
-name: server_hello
+name: server-hello
 description: A Helm chart for a simple C HTTP server that responds with "Hello, World!"
 version: 0.1.0
 appVersion: "1.0"

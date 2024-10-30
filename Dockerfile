@@ -1,19 +1,19 @@
 FROM gcc:latest AS builder
 
-WORKDIR /app
+WORKDIR /src
 
-COPY hello_server.c .
+COPY server_hello.c .
 
-RUN gcc -o hello_server hello_server.c
+RUN gcc -o server_hello server_hello.c
 
 
 FROM debian:latest
 
 WORKDIR /app
 
-COPY --from=builder /app/hello_server .
+COPY --from=builder /src/server_hello .
 
 EXPOSE 8080
 
-CMD ["./hello_server"]
+CMD ["./server_hello"]
 

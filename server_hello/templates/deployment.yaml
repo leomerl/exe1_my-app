@@ -20,6 +20,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 8080
+              hostPort: 8080
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
